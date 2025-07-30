@@ -54,10 +54,10 @@ void alkanol() {
 #define pb push_back
 #define popb pop_back
 
-#define copy_arr(a, b, n) for (ll i = 0; i < n; i++) a[i] = b[i];
-#define prefix_min(a, v, n) \
+#define copy(a, b) for (ll i = 0; i < b.size(); i++) a[i] = b[i];
+#define prefix(a, v) \
     a[0] = v[0]; \
-    for (ll i = 1; i < n; i++) a[i] = min(v[i], a[i-1]);
+    for (ll i = 1; i < v.size(); i++) a[i] = min(v[i], a[i-1]);
 #define loopin(v, n) for (ll i = 0; i < n; i++) cin >> v[i];
 #define loopout(v) for (auto &elem : v) cout << elem << " ";
 #define loop(n) for (auto i = 0; i < n; i++)
