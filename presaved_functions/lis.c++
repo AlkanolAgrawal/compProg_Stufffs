@@ -1,6 +1,12 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+#define vll vector<ll>
+
+#define loopin(v, n)           \
+    for (ll i = 0; i < n; i++) \
+        cin >> v[i];
+
 int lis(vector<ll> &v, int idx, int min, vector<vector<ll>> &dp)
 {
     int n = v.size();

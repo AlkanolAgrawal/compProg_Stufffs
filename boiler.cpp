@@ -6,13 +6,16 @@
 ██║  ██║███████╗██║  ██╗██║  ██║██║ ╚████║╚██████╔╝███████╗
 ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝
 */
+// standard libraries
 #include <bits/stdc++.h>
 #include <ext/pb_ds/assoc_container.hpp>
 #include <ext/pb_ds/tree_policy.hpp>
 
+// directives-> brings all the names from specified namespace to current scope
 using namespace std;
 using namespace __gnu_pbds;
 
+// standard_templates
 template <typename T>
 using ordered_set = tree<
     T,
@@ -28,6 +31,22 @@ using ordered_map = tree<
     rb_tree_tag,
     tree_order_statistics_node_update>;
 
+template <typename T>
+T power(T base, int exp)
+{
+    T result = 1;
+    while (exp > 0)
+    {
+        if (exp % 2 == 1)
+        {
+            result *= base;
+        }
+        base *= base;
+        exp /= 2;
+    }
+    return result;
+}
+// fastio
 void alkanol()
 {
     ios_base::sync_with_stdio(false);
@@ -35,6 +54,14 @@ void alkanol()
     cout.tie(NULL);
 }
 
+// debugging stuff
+#ifndef ONLINE_JUDGE
+#define debug(x) cerr << #x << " = " << (x) << endl;
+#else
+#define debug(x)
+#endif
+
+// easing initialisation
 #define vll vector<ll>
 #define pll pair<ll, ll>
 #define vpll vector<pair<ll, ll>>
@@ -42,7 +69,9 @@ void alkanol()
 #define vs vector<string>
 #define pq priority_queue
 #define elif else if
+#define dub double
 
+// easing technicalities
 #define yes cout << "YES\n";
 #define no cout << "NO\n";
 #define YES cout << "YES\n";
@@ -50,10 +79,12 @@ void alkanol()
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 #define sum(v) accumulate(all(v), 0LL)
-#define cnt_setbits(x) __builtin_popcountll(x)
+#define clz(x) __builtin_clzll(x)
 #define maxm(v) *max_element(all(v))
 #define minm(v) *min_element(all(v))
+#define cnt_setbits(x) __builtin_popcountll(x)
 
+// short_hands
 #define int long long
 #define ll long long
 #define ff first
@@ -63,11 +94,12 @@ void alkanol()
 #define pb push_back
 #define popb pop_back
 
-#define copy(a, b)      \
+// loop_ups
+#define copy(a, b)                    \
     for (ll i = 0; i < b.size(); i++) \
         a[i] = b[i];
-#define prefix(a, v)    \
-    a[0] = v[0];               \
+#define prefix(a, v)                  \
+    a[0] = v[0];                      \
     for (ll i = 1; i < v.size(); i++) \
         a[i] = min(v[i], a[i - 1]);
 #define loopin(v, n)           \
@@ -80,6 +112,7 @@ void alkanol()
 
 void solve();
 
+// Entry-Point
 signed main()
 {
     alkanol();
@@ -92,10 +125,14 @@ signed main()
     return 0;
 }
 
+// Tackling it
 void solve()
 {
     int n, k;
     cin >> n >> k;
     vll v(n);
-    loopin(v, n);
+    loop(n)
+    {
+        cin >> v[i];
+    }
 }
