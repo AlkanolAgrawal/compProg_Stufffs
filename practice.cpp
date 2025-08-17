@@ -31,27 +31,64 @@ using ordered_map = tree<
     rb_tree_tag,
     tree_order_statistics_node_update>;
 
+// ====================== UNIVERSAL MAX FUNCTION ======================
+template <typename Iterable>
+auto max(Iterable &container) -> decltype(*container.begin())
+{
+    using T = decltype(*container.begin());
+    T ans = *container.begin();
+    for (auto &elem : container)
+        ans = std::max(ans, elem);
+    return ans;
+}
+
+template <typename Iterable>
+auto min(Iterable &container) -> decltype(*container.begin())
+{
+    using T = decltype(*container.begin());
+    T ans = *container.begin();
+    for (auto &elem : container)
+        ans = std::min(ans, elem);
+    return ans;
+}
+
+// ====================== UNIVERSAL PRINT FUNCTION ======================
+// primitives
+template <typename T>
+typename enable_if<!is_class<T>::value>::type
+print(const T x)
+{
+    cout << x;
+}
+// pairs
+template <typename T1, typename T2>
+void print(const pair<T1, T2> &p)
+{
+    cout << "(" << p.first << ", " << p.second << ")";
+}
+// sequences
+template <typename Container>
+auto print(const Container &container) -> decltype(container.begin(), void())
+{
+    bool first = true;
+    for (auto &elem : container)
+    {
+        if (!first)
+            cout << " ";
+        print(elem);
+        first = false;
+    }
+    cout << "\n";
+}
+// power
 template <typename T>
 T power(T base, int exp)
 {
-    T result = 1;
-    while (exp > 0)
-    {
-        if (exp % 2 == 1)
-        {
-            result *= base;
-        }
-        base *= base;
-        exp /= 2;
-    }
-    return result;
-}
-// fastio
-void alkanol()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+    T res = 1;
+    for (; exp; exp >>= 1, base *= base)
+        if (exp & 1)
+            res *= base;
+    return res;
 }
 
 // debugging stuff
@@ -69,19 +106,15 @@ void alkanol()
 #define vs vector<string>
 #define pq priority_queue
 #define elif else if
-#define dub double
 
 // easing technicalities
 #define yes cout << "YES\n";
 #define no cout << "NO\n";
-#define YES cout << "YES\n";
-#define NO cout << "NO\n";
 #define all(x) x.begin(), x.end()
 #define rall(x) x.rbegin(), x.rend()
 #define sum(v) accumulate(all(v), 0LL)
 #define clz(x) __builtin_clzll(x)
-#define maxm(v) *max_element(all(v))
-#define minm(v) *min_element(all(v))
+#define ctz(x) __builtin_ctzll(x)
 #define cnt_setbits(x) __builtin_popcountll(x)
 
 // short_hands
@@ -93,25 +126,21 @@ void alkanol()
 #define ub upper_bound
 #define pb push_back
 #define popb pop_back
+#define dub double
 
-// loop_ups
-#define copy(a, b)                    \
-    for (ll i = 0; i < b.size(); i++) \
-        a[i] = b[i];
-#define prefix(a, v)                  \
-    a[0] = v[0];                      \
-    for (ll i = 1; i < v.size(); i++) \
-        a[i] = min(v[i], a[i - 1]);
-#define loopin(v, n)           \
-    for (ll i = 0; i < n; i++) \
-        cin >> v[i];
-#define loopout(v)       \
-    for (auto &elem : v) \
-        cout << elem << " ";
-#define loop(n) for (auto i = 0; i < n; i++)
+// repetitions
+#define rep(i, s, e) for (auto i = s; i < e; i++)
+#define reprev(i, s, e) for (auto i = s; i >= e; i--)
 
+// solving_functions
 void solve();
-
+// fastio
+void alkanol()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+}
 // Entry-Point
 signed main()
 {
@@ -125,14 +154,13 @@ signed main()
     return 0;
 }
 
-// Tackling it
+// Taking it On!!
 void solve()
 {
     int n, k;
     cin >> n >> k;
     vll v(n);
-    loop(n)
-    {
-        cin >> v[i];
-    }
+    rep(i, 0, n) cin >> v[i];
+    print(v);
+    
 }
