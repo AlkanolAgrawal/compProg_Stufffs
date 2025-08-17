@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build and Run CP",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "g++ practice.cpp -o obj && ./obj < input.txt > output.txt"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
