@@ -2,17 +2,39 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build and Run CP",
+            "label": "Build and Run CP (Windows MinGW)",
             "type": "shell",
-            "command": "bash",
+            "command": "cmd",
             "args": [
-                "-c",
-                "g++ practice.cpp -o obj && ./obj < input.txt > output.txt"
+                "/d",
+                "/c",
+                "g++ practice.cpp -std=gnu++17 -O2 -pipe -Wall -Wextra -o obj.exe && obj.exe < input.txt > output.txt"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
+            "problemMatcher": []
+        },
+        {
+            "label": "Build and Run CP (WSL)",
+            "type": "shell",
+            "command": "wsl",
+            "args": [
+                "bash",
+                "-lc",
+                "g++ practice.cpp -std=gnu++17 -O2 -pipe -Wall -Wextra -o obj && ./obj < input.txt > output.txt"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Build and Run CP (Git Bash)",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-lc",
+                "g++ practice.cpp -std=gnu++17 -O2 -pipe -Wall -Wextra -o obj && ./obj < input.txt > output.txt"
+            ],
             "problemMatcher": []
         }
     ]
